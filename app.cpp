@@ -25,17 +25,22 @@ static std::mutex g_client_mtx;
 void signalHandler(int) { running.store(false); }
 
 void logic_pro_loop(std::shared_ptr<discordpp::Client> client) {
-    while (running.load()) {
+    bool was_running = false;
 
-        if (!is_logic_pro_running()) {
-            discordpp::Activity empty;
-            client->UpdateRichPresence(empty, [](discordpp::ClientResult r) {
-                if (!r.Successful()) std::cerr << "❌ clear presence has failed\n";
-            });
+    while (running.load()) {
+        bool is_running = is_logic_pro_running();
+
+        if (!is_running) {
+            if (was_running) {
+                client->ClearRichPresence(); // ✅ actually clears it
+            }
+            was_running = false;
 
             std::this_thread::sleep_for(std::chrono::seconds(1));
             continue;
         }
+
+        was_running = true;
 
         std::string project = get_logic_project_name();
 
@@ -55,6 +60,9 @@ void logic_pro_loop(std::shared_ptr<discordpp::Client> client) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
+
+
+
 
 void app_init() {
     std::signal(SIGINT, signalHandler);
