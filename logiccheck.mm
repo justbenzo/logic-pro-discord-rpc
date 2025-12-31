@@ -4,7 +4,6 @@
 
 bool is_logic_pro_running();
 
-// process_check.mm  (NOTE: must be .mm, not .cpp)
 #import <AppKit/NSRunningApplication.h>
 
 bool is_logic_pro_running() {
