@@ -9,6 +9,9 @@ When Logic Pro is open:
 When Logic Pro is closed:
 - Discord status is cleared
 
+<img width="276" height="103" alt="Screenshot 2025-12-31 at 1 17 30 PM" src="https://github.com/user-attachments/assets/da991686-8f32-462d-9d70-712d7c57163c" />
+<img width="170" height="136" alt="Screenshot 2025-12-31 at 1 24 10 PM" src="https://github.com/user-attachments/assets/c0aa2a48-92df-4959-af68-704f5b82b071" />
+
 ---
 
 ## Features
