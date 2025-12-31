@@ -32,20 +32,32 @@ static std::string strip_suffix(std::string s, const std::string& suffix) {
     return s;
 }
 
+// Single-quote for the shell so osascript gets the script exactly as written.
+static std::string shell_quote(const std::string& s) {
+    std::string out;
+    out.reserve(s.size() + 2);
+    out.push_back('\'');
+    for (char c : s) {
+        if (c == '\'') out += "'\\''";  // end quote, escape quote, reopen
+        else out.push_back(c);
+    }
+    out.push_back('\'');
+    return out;
+}
+
 std::string get_logic_project_name() {
-    const std::string cmd =
-        "osascript -e 'if application \"Logic Pro\" is running then "
-        "tell application \"Logic Pro\" "
-        "try "
-        "set d to front document "
-        "return name of d "
-        "on error "
-        "return \"\" "
-        "end try "
-        "end tell "
-        "else "
-        "return \"\" "
-        "end if'";
+    const char* script = R"applescript(
+tell application "Logic Pro"
+    try
+        set projName to name of front document
+        return projName
+    on error
+        return ""
+    end try
+end tell
+)applescript";
+
+    std::string cmd = "osascript -e " + shell_quote(script);
 
     std::string name = run_cmd(cmd);
     if (name.empty()) return "";

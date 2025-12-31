@@ -11,7 +11,7 @@ add_executable(logicrpc
     main.mm
     engine.cpp
     app.cpp
-    logiccheck.cpp
+    logiccheck.mm
     projectname.cpp
     token_store.cpp
 )
