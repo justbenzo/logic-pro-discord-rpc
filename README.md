@@ -13,12 +13,9 @@ When Logic Pro is closed:
 
 ## Features
 
-- macOS menu-bar app (no Dock icon)
-- On-demand Discord authentication
+- macOS menu-bar app
 - Silent re-authentication (no login every launch)
 - Optional **Start at Login** checkbox
-- Does **not** launch or interfere with Logic Pro
-- Local only — nothing is sent anywhere except Discord
 
 ---
 
@@ -46,8 +43,6 @@ You only need to do this once.
 
 Use the menu-bar checkbox **“Start at Login”** to enable or disable launching automatically when you log in.
 
-(This is per-user and can be changed anytime.)
-
 ---
 
 ## Build from Source (Advanced)
@@ -67,3 +62,12 @@ Then build:
 ```bash
 cmake -S . -B build
 cmake --build build
+```
+
+To-Do
+- two instances of error handling (currently caught exception)
+- menu bar icon (currently text)
+- filesize optimization
+- more coming soon...
+
+Please message me on Discord @beastrg if there are features you would like to see or if you encounter bugs (git issues work as well).
