@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+CMakeCache.txt
+CMakeFiles/
+*.o
+*.dSYM/
+*.app
+
+# macOS
+.DS_Store
+
+# User-specific data
+Library/
+*.plist
+
+# Tokens / configs
+config.json
+refresh_token.txt
+lib/discord_social_sdk/lib/release/libdiscord_partner_sdk.dylib
