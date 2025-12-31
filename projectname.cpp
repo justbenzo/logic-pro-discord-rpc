@@ -47,15 +47,20 @@ static std::string shell_quote(const std::string& s) {
 
 std::string get_logic_project_name() {
     const char* script = R"applescript(
-tell application "Logic Pro"
-    try
-        set projName to name of front document
-        return projName
-    on error
+    if application "Logic Pro" is not running then
         return ""
-    end try
-end tell
-)applescript";
+    end if
+
+    tell application "Logic Pro"
+        try
+            return name of front document
+        on error
+            return ""
+        end try
+    end tell
+    )applescript";
+
+
 
     std::string cmd = "osascript -e " + shell_quote(script);
 
