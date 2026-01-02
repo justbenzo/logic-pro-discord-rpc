@@ -137,8 +137,9 @@ static void DisableStartAtLogin() {
 }
 
 - (void)authenticate {
-    engine::authenticate();
+    engine::reset_auth_and_authenticate();
 }
+
 
 - (void)quit {
     engine::stop();

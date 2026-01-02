@@ -1,6 +1,7 @@
 #include "engine.h"
 #include <thread>
 #include <atomic>
+#include <token_store.h>
 
 extern std::atomic<bool> running;
 extern std::thread logic_thread;
@@ -12,6 +13,14 @@ static std::thread app_thread;
 static std::atomic<bool> engine_running{false};
 
 namespace engine {
+
+    void authenticate();
+    void reset_auth_and_authenticate();
+
+    void reset_auth_and_authenticate() {
+        token_store::clear();   // ← THIS IS THE KEY
+        app_begin_auth();
+    }
 
 void start_idle() {
     if (engine_running.exchange(true)) return;

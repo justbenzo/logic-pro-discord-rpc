@@ -12,6 +12,10 @@ static std::filesystem::path token_path() {
     return p;
 }
 
+void token_store::clear() {
+    std::filesystem::remove(token_path());
+}
+
 namespace token_store {
 std::string load_refresh_token() {
     std::ifstream in(token_path());
