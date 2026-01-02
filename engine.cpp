@@ -14,9 +14,6 @@ static std::atomic<bool> engine_running{false};
 
 namespace engine {
 
-    void authenticate();
-    void reset_auth_and_authenticate();
-
     void reset_auth_and_authenticate() {
         token_store::clear();   // ← THIS IS THE KEY
         app_begin_auth();
