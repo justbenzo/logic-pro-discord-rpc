@@ -68,6 +68,7 @@ cmake --build build
 ```
 
 To-Do
+- re-build rpc to use discord-rpc express (remove need for discord application & runs locally)
 - two instances of error handling (currently caught exception)
 - menu bar icon (currently text)
 - filesize optimization
